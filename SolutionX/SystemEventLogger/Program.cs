@@ -9,13 +9,19 @@ namespace SystemEventLogger
 {
     class Program
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+
+
         /// <summary>
         /// Sample console application to write events to the system log
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            WriteToSystemEventLog();
+            //WriteToSystemEventLog();
+
+            WriteToSystemEventLogUsingLog4Net();
         }
 
         private static void WriteToSystemEventLog()
@@ -49,6 +55,28 @@ namespace SystemEventLogger
             }
         }
 
+        private static void WriteToSystemEventLogUsingLog4Net()
+        {
+            // https://stackify.com/log4net-guide-dotnet-logging/
+
+            Console.WriteLine("Writing Test Message to System Event Log");
+
+            try
+            {
+                log.Info("Writing Test Message to System Event Log");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Message: {ex.Message}");
+                Console.WriteLine($"Exception: {ex.InnerException?.ToString() ?? ""}");
+            }
+            finally
+            {
+                Console.WriteLine("--Done--");
+                Console.ReadLine();
+            }
+            
+        }
 
     }
 }
