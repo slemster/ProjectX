@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S3
+namespace SystemEventLogger
 {
     class Program
     {
         /// <summary>
-        /// Sample application to upload/download files to an S3 bucket
+        /// Sample console application to write events to the system log
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
