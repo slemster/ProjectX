@@ -9,6 +9,16 @@ namespace SystemEventLogger
 {
     class Program
     {
+
+        /// <summary>
+        /// Declaring any variable in your code has overhead. 
+        /// When I have been doing some profiling sessions in the past to optimize code, 
+        /// I have noticed that the constructors on the LogManager object can use a lot of CPU.
+        /// 
+        /// 
+        /// Declare it as static and use this little trick so you don’t have to hard code the class type
+        /// 
+        /// </summary>
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         
 
@@ -63,7 +73,11 @@ namespace SystemEventLogger
 
             try
             {
-                log.Info("Writing Test Message to System Event Log");
+                log.Debug("Throwing 'Debug' Message");
+                log.Info("Throwing 'Info' Message");
+                log.Warn("Throwing 'Warning' Message");
+                log.Error("Throwing 'Error' Message");
+                log.Fatal("Throwing 'Fatal' Message");
             }
             catch (Exception ex)
             {
